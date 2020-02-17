@@ -1,3 +1,6 @@
 .hide_element {
     display: none;
 }
+.show_element {
+    display: unset;
+}

@@ -2,6 +2,17 @@
 TancTonqTia
 */
 
+
+/*
+Player Factory function
+*/
+
+const Player = (name, isVsComputer) => {
+    const returnName = () => name;
+    const returnIsVsComputer = () => isVsComputer;
+    return { returnName, returnIsVsComputer }
+};
+
 /*
 Gameboard Module
 */
@@ -22,8 +33,8 @@ const gameBoard = (() => {
         gameWrapper.appendChild(square);
     }
 
-    function assignTeam {
-        
+    function assignTeam() {
+
     }
 
 })();
@@ -33,7 +44,22 @@ Game Flow module
 */
 
 const gameFlow = (() => {
+    let nameInputWrapper = document.getElementById("name__wrapper");
+    let nameInputElement = document.getElementById("name_input");
 
+    const renderNameInput = (() => {
+        let gameTypeWrapper = document.getElementById("gametype__wrapper");
+        let vsComp = document.getElementById("vs_computer");
+
+        vsComp.addEventListener("click", revealNameInput);
+
+        function revealNameInput() {
+            nameInputWrapper.classList.add("show_element");
+            nameInputWrapper.classList.remove("hide_element");
+            gameTypeWrapper.classList.add("hide_element");
+        }
+    })();
+    let userOne = Player(nameInputElement.value, true);
 })();
 
 /*
@@ -42,11 +68,3 @@ Display Controller Module
 const displayController = (() => {
 
 })();
-
-/*
-Player Factory
-*/
-
-const Player = () => {
-
-};
