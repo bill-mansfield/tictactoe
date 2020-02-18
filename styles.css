@@ -1,6 +1,37 @@
 .hide_element {
     display: none;
 }
+
 .show_element {
-    display: unset;
+    display: flex;
+}
+
+.name__wrapper {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.name_input {
+    text-align: center;
+    width: 100%;
+}
+
+.game__wrapper {
+    width: 620px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 32%;
+    margin-right: 32%;
+}
+
+.game_title {
+    width: 100%;
+}
+
+.game_square {
+    height: 200px;
+    width: 200px;
+    border: 2px solid brown;
+    background-color: wheat;
 }
