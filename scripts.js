@@ -7,11 +7,20 @@ TancTonqTia
 Player Factory function
 */
 
-const Player = (name, isVsPlayer) => {
-    const returnName = () => name;
-    const returnIsVsPlayer = () => isVsPlayer;
-    return { returnName, returnIsVsPlayer }
+const Player = (name) => {
+    const getName = () => name;
+    return { getName }
 };
+
+const formSubmit = () => {
+    let inputOne = document.getElementById("name_input_one").value;
+    let inputTwo = document.getElementById("name_input_two").value;
+
+    const {playerOne} = Player("trash");
+    const playerTwo = Player(inputTwo); 
+    
+    return { playerOne, playerTwo }
+}
 
 /*
 Gameboard Module
@@ -51,28 +60,24 @@ const displayController = (() => {
     let submitBtn = document.getElementById("name_submit");
     const gameTitle = document.getElementById("game_title");
 
-    function revealNameInput() {
+    const revealNameInput = () => {
         nameInputWrapper.classList.add("show_element");
         nameInputWrapper.classList.remove("hide_element");
         gameTypeWrapper.classList.add("hide_element");
+        return { revealNameInput }
     }
-    const submitForm = () => {
-        const userNameOne = document.getElementById("name_input_one").value;
-        const userNameTwo = document.getElementById("name_input_two").value;
-
+    const revealGameBoard = () => {
         nameInputWrapper.classList.remove("show_element");
         nameInputWrapper.classList.add("hide_element");
-
         gameBoard.gameWrapper.classList.add("show_element");
         gameBoard.gameWrapper.classList.remove("hide_element");
-        gameFlow.statePlayers();
-        return { userNameOne, userNameTwo }
+        return { revealGameBoard }
     }
 
-    submitBtn.addEventListener("click", submitForm)
+    submitBtn.addEventListener("click", revealGameBoard && formSubmit)
     vsHuman.addEventListener("click", revealNameInput);
 
-    return { submitForm, gameTitle }
+    return { gameTitle }
 })();
 
 
@@ -81,14 +86,9 @@ Game Flow module
 */
 
 const gameFlow = (() => {
-    const players = (() => {
-        playerOne = Player(displayController.submitForm.userNameOne, true);
-        playerTwo = Player(displayController.submitForm.userNameTwo, true);
-        return { playerOne, playerTwo}
-    })();
 
-    const statePlayers = (() => {
-        displayController.gameTitle.innerHTML = `${players.playerOne.returnName()} vs ${players.playerTwo.returnName()}`;
-    });
-    return { players, statePlayers }
 })();
+
+function start() {
+    console.log(formSubmit.playerOne);
+}
